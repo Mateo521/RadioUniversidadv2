@@ -1,0 +1,258 @@
+/*
+Theme Name: Radio Universidad
+Theme URI: URL LOCAL
+Author: Mateo Villalva
+Author URI: #
+Description:FRONTEND personalizado para Radio Universidad por Mateo
+Requires at least: 6.1
+Tested up to: 6.3
+Requires PHP: 5.6
+Version: 1.85
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Text Domain: Radio Universidad
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@600&display=swap');
+
+body{
+    overflow-x:hidden;
+    font-family: 'Inter', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+#bg-res{
+    background-color:#F0F0F0;
+}
+
+.svgs{
+    filter: invert(97%) sepia(16%) saturate(400%) hue-rotate(240deg) brightness(117%) contrast(100%);
+}
+#menusmobile:hover  .svgs{
+    filter: invert(15%) sepia(25%) saturate(5943%) hue-rotate(197deg) brightness(90%) contrast(95%);
+}
+#mediasvgs{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(2deg) brightness(103%) contrast(103%);
+}
+footer{
+    display:flex;
+    justify-content:center;
+    color:white;
+    background-color:#282828;
+    padding:35px;
+   
+
+}
+.footer-icon{
+    width:100%;
+    max-width:200px;
+}
+#info-t{
+    margin: 50px 0;
+}
+
+#bg-1{
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+}
+#carousel{
+    height:35rem;
+}
+#titulo-slider{
+    font-size: 3.75rem;
+}
+#info-slider{
+   
+    font-size: 2.25rem;
+}
+#svg-new{
+    height:2em;
+}
+#podcast{
+    font-size:8rem;
+    color:#4D545B;
+    font-family: 'Antonio', sans-serif;
+    margin:0;
+    padding:35px 0;
+}
+
+
+@media screen and (max-width:892px){
+#historia{
+grid-template-columns:1fr;
+}
+
+    #grids{
+        grid-template-columns : 1fr;
+    }
+#pod-card{
+    flex-direction:column;
+   }
+}
+#noticia-g{
+    border-top-left-radius:0.5rem;
+    border-top-right-radius:0.5rem;
+    max-height:350px;
+    height:100%;
+    object-fit:cover;
+}
+#noticia-d{
+
+    grid-template-columns: 35% 1fr;
+}
+/*
+#noticia-d img{
+
+    max-height: 135px;
+}
+*/
+#noticia-d h3{
+    margin: 0;
+}
+
+.bg-white\/50{
+    background-color:#B8C2CC !important;
+}
+#slider .bg-white{
+
+    --tw-bg-opacity: 1 !important;
+    background-color:#062C55 !important;
+}
+   
+#bg-2{
+    background-color: #07376A;
+    opacity:0.75;
+}
+
+#svgs-pod{
+    filter: invert(77%) sepia(62%) saturate(554%) hue-rotate(3deg) brightness(97%) contrast(93%);
+     height:2.5em;
+}
+#title-pd{
+    color:#E5CC26;
+}
+
+#card-i{
+    padding:100px 1.5rem;
+    left: 50%; transform: translateX(-50%); position: relative;
+
+}
+#title-card,#title-card-2{
+    color: #062C55;
+}
+#titulo-categoria{
+    font-size:5rem;
+}
+#img-c{
+    width:65px;
+}
+#padd-staff {
+    padding:1.1rem;
+}
+@media screen and (max-width:766px){
+    #img-c{
+        width:35px;
+    }
+    #titulo-categoria{
+        font-size:2.5rem;
+    }
+    #title-card{
+        font-size:1.5rem;
+    }
+    #title-card-2{
+        font-size:1.1rem;
+    }
+    #podcast{ 
+        font-size:5rem;
+    }
+   
+    #svg-new{
+        height:1em;
+    }
+    #titulo-slider{
+        font-size:1.5rem;
+    }
+    #info-slider{
+        font-size: 1rem;
+    }
+    #title{
+        font-size:25px;
+    }
+    #bg-res{
+        background-color:#07376A;
+    }
+    #info-t{
+        margin:15px 0 ;
+    }
+    #carousel{
+        height:40rem;
+    }
+}
+#radio-3 img{
+    width:100%;
+    max-width:100px;
+}
+#seccion-radio{
+     bottom:0;
+}
+
+
+
+ul.page-numbers {
+    list-style: none;
+    margin: 0;
+}
+
+.page-numbers:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+ul.page-numbers li {
+    display: block;
+    float: left;
+    margin: 0 4px 4px 0;
+    text-align: center;
+}
+
+.page-numbers a,
+.page-numbers span {
+    line-height: 1.6em;
+    display: block;
+    padding: 0 6px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 400;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: #888;
+}
+
+.page-numbers a span { padding: 0 }
+
+.page-numbers a:hover,
+.page-numbers.current,
+.page-numbers.current:hover {
+    color: #000;
+
+    text-decoration: none;
+}
+
+.page-numbers:hover { text-decoration: none }
+
+
+
+
+
+
+
