@@ -36,18 +36,9 @@ $the_query = new WP_Query($args);
     $categories = get_the_category();
     $entry_date = get_the_date('d/m/Y');
 
-  $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*<\/figure>/is';
+      $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*?<\/figure>/is';
     ?>
 
-
-    <!-- 
-     <img src="" alt="">
-    <h2><a href="<?php the_permalink(); ?>" title="Read"></a></h2>
-    <?php the_excerpt(); ?>
-  
- -->
-
-    
 <div class="flex flex-col w-full my-6" >
     <a href="<?php the_permalink(); ?>">
                     <img class="w-full" src="<?php echo esc_url($image_url); ?>" id="noticia-g" alt="<?php echo esc_attr($entry_title); ?>">
@@ -61,7 +52,7 @@ if (!empty($categories)) {
     foreach ($categories as $index => $category) {
         echo esc_html($category->name);
         if ($index !== count($categories) - 1) {
-            echo ', '; // Agregar coma y espacio entre categorías
+            echo ', '; 
         }
     }
     echo '</h3>';
@@ -84,11 +75,6 @@ if (!empty($categories)) {
     
 <?php endwhile; endif; ?>
 </div>
-
-
-    
-
-
 <!-- Agregar enlace a la página anterior y siguiente -->
 <div class="flex justify-center gap-8 items-center">
   

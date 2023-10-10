@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="En 1.989 el rector de la Universidad Nacional de San Luis licenciado Alberto Puchmüller, impulsa la conformación de un grupo de trabajo, para que se aboque al análisis de factibilidad para la puesta en marcha de una radio de frecuencia modulada en la ciudad de San Luis y otra en Villa Mercedes. La comisión elabora el correspondiente anteproyecto de creación de las dos radios universitarias. A solicitud del Sr. Rector, el Poder Ejecutivo Nacional a través del decreto 482/89, autoriza a la Universidad Nacional de San Luis para que instale y opere dos servicios de modulación de frecuencia en las ciudades de San Luis y Villa Mercedes. Sobre la base del anteproyecto y de la autorización de Presidencia de la Nación, el Consejo Superior de la Universidad Nacional de San Luis aprueba la ordenanza 15/1.989, en donde ordena la creación en el ámbito de la U.N.S.L., de dos servicios de radiodifusión sonora con modulación de frecuencia">
     <title>Radio Universidad</title>
   <link rel="icon" type="image/x-icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.png">
     <?php
     wp_head();
     ?>
-
 </head>
-
 <body style="background-color:#282828;">
-
     <!-- HEADER -->
-
-
     <div class="z-50 w-full fixed" id="navbar">
-        <nav class="border-gray-200" id="bg-res">
+        <nav class="border-gray-200 relative" id="bg-res">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center">
                 <svg class="h-16 md:block hidden"  viewBox="0 0 462 166" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -112,7 +107,7 @@
                             <a href="<?php echo esc_url(home_url('/')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
                                     <div class="w-16">
-                                        <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                                             <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                                         </svg>
                                     </div>
@@ -124,7 +119,7 @@
                             <a href="<?php echo esc_url(home_url('/noticias')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
                                     <div class="w-16">
-                                        <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                                             <path d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5V78.6c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8V454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5V83.8c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11V456c0 11.4 11.7 19.3 22.4 15.5z" />
                                         </svg>
                                     </div>
@@ -135,7 +130,7 @@
                         <li id="menusmobile" class="rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                             <a href="<?php echo esc_url(home_url('/podcasts')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
-                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                                     </svg>
                                     <p> Podcasts</p>
@@ -145,7 +140,7 @@
                         <li id="menusmobile" class="rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                             <a href="<?php echo esc_url(home_url('/programacion')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
-                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path d="M494.8 47c12.7-3.7 20-17.1 16.3-29.8S494-2.8 481.2 1L51.7 126.9c-9.4 2.7-17.9 7.3-25.1 13.2C10.5 151.7 0 170.6 0 192v4V304 448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H218.5L494.8 47zM368 240a80 80 0 1 1 0 160 80 80 0 1 1 0-160zM80 256c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16zM64 320c0-8.8 7.2-16 16-16H208c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm16 64c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16z" />
                                     </svg>
                                     <p>Programación</p>
@@ -155,26 +150,27 @@
                         <li id="menusmobile" class="rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                             <a href="<?php echo esc_url(home_url('/institucional')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
-                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
                                         <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
                                     </svg>
+
                                     <p>Institucional</p>
+
+
+                                    
                                 </div>
                             </a>
                         </li>
                         <li id="menusmobile" class="rounded md:bg-transparent  md:p-0 md:dark:text-blue-500 hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                             <a href="<?php echo esc_url(home_url('/contacto')); ?>" class="block py-2 pl-3 pr-4 text-white text-white rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-blue-900 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
                                 <div class="flex items-center gap-3">
-                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <svg class="svgs" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                         <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
                                     </svg>
                                     <p>Contacto</p> 
                                 </div>
                             </a>
                         </li>
-                        <!--
-                        <div class=" rounded-lg  text-white p-1 w-full" style="max-width:130px; background-color: red; margin:25px 0 0 0;"><a href="#radio">● Radio en vivo</a></div>
-                    -->
                     </ul>
                 </div>
             </div>
@@ -191,7 +187,7 @@
                 </div>
             </a>
             <div>
-                <ul class="flex gap-3 text-white px-3">
+                <ul class="flex gap-3 text-white px-3 header-idioma items-center">
                     <li><a href="https://www.facebook.com/unslradio/?locale=es_LA" target="_blank"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="10.0003" cy="9.99996" r="8.33333" fill="#FAFAFA" />
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2149 7.06571C11.9552 7.01377 11.6044 6.97496 11.3838 6.97496C10.7865 6.97496 10.7476 7.23468 10.7476 7.65024V8.38999H12.2409L12.1107 9.92235H10.7476V14.5833H8.87796V9.92235H7.91699V8.38999H8.87796V7.44215C8.87796 6.14385 9.48816 5.41663 11.0202 5.41663C11.5525 5.41663 11.9421 5.49454 12.4484 5.59843L12.2149 7.06571Z" fill="#282828" />
@@ -204,8 +200,6 @@
 <path d="M10.0021 7.43481C8.5841 7.43481 7.43457 8.58434 7.43457 10.0024C7.43457 11.4204 8.5841 12.5699 10.0021 12.5699C11.4202 12.5699 12.5697 11.4204 12.5697 10.0024C12.5697 8.58434 11.4202 7.43481 10.0021 7.43481ZM10.0021 11.669C9.08166 11.669 8.33547 10.9228 8.33547 10.0024C8.33547 9.0819 9.08166 8.33571 10.0021 8.33571C10.9226 8.33571 11.6688 9.0819 11.6688 10.0024C11.6688 10.9228 10.9226 11.669 10.0021 11.669Z" fill="#282828"/>
 <path d="M13.2713 7.3317C13.2713 7.66305 13.0027 7.93169 12.6713 7.93169C12.3399 7.93169 12.0713 7.66305 12.0713 7.3317C12.0713 7.00033 12.3399 6.73169 12.6713 6.73169C13.0027 6.73169 13.2713 7.00033 13.2713 7.3317Z" fill="#282828"/>
 </svg>
-
-
                         </a></li>
                     <li><a href="https://www.youtube.com/@radiounslcontenidos" target="_blank">
 
@@ -213,21 +207,15 @@
 <circle cx="10.0003" cy="9.99996" r="8.33333" fill="#FAFAFA"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7082 6.8242C14.8745 6.99049 14.9943 7.19744 15.0558 7.42445C15.4095 8.84822 15.3277 11.0968 15.0626 12.5755C15.0012 12.8026 14.8814 13.0095 14.7151 13.1758C14.5488 13.3421 14.3418 13.4619 14.1148 13.5234C13.2838 13.75 9.939 13.75 9.939 13.75C9.939 13.75 6.59422 13.75 5.76318 13.5234C5.53617 13.4619 5.32921 13.3421 5.16292 13.1758C4.99663 13.0095 4.8768 12.8026 4.81537 12.5755C4.45961 11.158 4.55713 8.90797 4.80851 7.43132C4.86993 7.20431 4.98976 6.99735 5.15605 6.83106C5.32234 6.66477 5.5293 6.54494 5.75631 6.48352C6.58735 6.25687 9.93213 6.25 9.93213 6.25C9.93213 6.25 13.2769 6.25 14.108 6.47665C14.335 6.53808 14.5419 6.6579 14.7082 6.8242ZM11.6423 10L8.86757 11.6071V8.39285L11.6423 10Z" fill="#282828"/>
 </svg>
-
                         </a></li>
                 </ul>
             </div>
         </div>
-         <!--md:sticky top-0; -->
-
-
-         
 <style>
 #letras{
       transition: opacity 0.3s;
 }
 #mobilelogo{
-
  -webkit-transition: all 0.5s cubic-bezier(.53,-0.01,.52,1);
        -moz-transition: all 0.5s cubic-bezier(.53,-0.01,.52,1);
         -ms-transition: all 0.5s cubic-bezier(.53,-0.01,.52,1);
@@ -238,10 +226,7 @@
 <script>
   let activado = false;
 function logostr(){
-
-  if(activado){
-      
-       
+  if(activado){  
       $("#mobilelogo").css({left:"calc(50% - 58px)"});
      $("#letras").css({opacity:"1"});
   }
@@ -252,11 +237,6 @@ function logostr(){
   }
   activado = !activado;
 }
-
-
-/*
-
-*/
 </script>
     <nav style="background-color: #07376A;box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.1); " class="hidden md:block  z-50">
             <div class="max-w-screen-xl px-4 py-3 mx-auto">
@@ -287,7 +267,7 @@ function logostr(){
                         </li>
                     </ul>
 
-                    <ul class="flex gap-3 text-gray-400 items-center">
+                    <ul class="flex gap-3 text-gray-400 items-center header-idioma">
                         <a href="https://www.facebook.com/unslradio/?locale=es_LA" target="_blank">
                             <li><img width="18px" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="">
                             </li>
@@ -311,11 +291,20 @@ function logostr(){
     background: linear-gradient(180deg, rgba(7,55,106,1) 0%, rgba(0,0,0,1) 100%);"></div>
 
 <style>
+
+
+
+
+
+
 #relleno{
 height: 140px;
 }
 @media screen and (max-width:766px){
-
+    
+.notranslate > span{
+display:none;
+}
 #relleno{
 height: 112px;
 }

@@ -44,7 +44,6 @@ function save_contact_form_message_as_comment()
         $name = sanitize_text_field($_POST['name']);
         $email = sanitize_email($_POST['email']);
         $message = sanitize_textarea_field($_POST['message']);
-
         $comment_data = array(
             'comment_post_ID' => 0, // Cambiar a la ID de la publicación o página deseada
             'comment_author' => $name,
@@ -52,15 +51,9 @@ function save_contact_form_message_as_comment()
             'comment_content' => $message,
             'comment_approved' => '0', // Comentario pendiente de aprobación
         );
-
         wp_insert_comment($comment_data);
-
-
-    if(is_page_template('front-page.php')){
-     echo"pagina principal";
-    }else{
-    echo"pagina contacto";
-    }
+        wp_redirect(home_url());
+        exit;
 }
 }
 
@@ -193,5 +186,35 @@ function custom_comment_callback($comment, $args, $depth) {
         </style>
     <?php
 }
+
+
+/*LOGIN PERSONALIZADO*/
+
+function custom_login_logo() {
+    echo '<style type="text/css">
+        .login h1 a {
+          background-image: url(https://radiouniversidad.unsl.edu.ar/images/icons/logo2.png) ;
+          background-position: center center;
+		  background-size: contain;
+	      width: 100%;
+        }
+    </style>';
+}
+add_action('login_head', 'custom_login_logo');
+
+function login_url(){
+return "http://radiounsl.byethost18.com"; 
+}
+add_filter('login_headerurl', 'login_url');
+
+function login_background() {
+echo '<style type="text/css">
+body { background: #07376A; }
+.login form { background: #cfd9e3; }
+.login #nav a{ color:white;}
+.login #backtoblog a { color:White;}
+</style>';
+}
+add_action('login_head', 'login_background');
 
 ?>

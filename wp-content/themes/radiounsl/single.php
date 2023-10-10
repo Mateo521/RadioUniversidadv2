@@ -32,10 +32,19 @@ while (have_posts()) :
     // $content = preg_replace('/<p\s+id="subtitulo"[^>]*>.*?<\/p>/i', '', $content); elimina subtitulos
     $fragments = preg_split('/(<img[^>]+>)/', $content, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-
-
     preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
-    $image_url = isset($matches[1]) ? $matches[1] : '';
+  //  $image_url = isset($matches[1]) ? $matches[1] : '';
+
+
+ $imagenes = array();
+        preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
+
+        if (!empty($matches[1])) :
+            foreach ($matches[1] as $image_url) :
+                $imagenes[] = $image_url;
+            endforeach;
+        endif;
+
 
     $is_podcast = false;
 
@@ -47,25 +56,7 @@ while (have_posts()) :
     }
 ?>
 
-
-    <!--  
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <header class="entry-header">
-                    <h1 class="entry-title"><?php the_title(); ?></h1>
-                </header>
-
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div>
-            </article>
-
--->
-
-
 <?php
-
-
-
 endwhile; // Fin del loop.
 
 ?>
@@ -82,19 +73,30 @@ if ($is_podcast) :
 
 
                 <div class="p-6 w-full">
-              
+
+              <!-- CATEGORÍAS  -->
+              <!--
            <?php     
-                if (!empty($categories)) {
-                                echo '<p class="font-bold pb-5" style="text-transform:uppercase; color:#E5CC26;">';
-                                foreach ($categories as $index => $category) {
-                                    echo esc_html($category->name);
-                                    if ($index !== count($categories) - 1) {
-                                        echo ', '; // Agregar coma y espacio entre categorías
-                                    }
-                                }
-                                echo '</p>';
-                            }
-                            ?>
+              if (!empty($categories)) {
+    echo '<h5 class=" text-md font-bold tracking-tight" style="text-transform:uppercase;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ' '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}?>
+-->
+
+
+                            
     
 
 
@@ -105,7 +107,7 @@ if ($is_podcast) :
                   
                     if ($entry_tags) : ?>
                         <?php foreach ($entry_tags as $tag) : ?>
-                            <p class="rounded-lg text-white p-1  inline-flex" style="background-color: #1476B3; font-size:13px;"><?php echo esc_html($tag->name); ?></p>
+                            <p class="rounded-lg text-white p-1  inline-flex" style="background-color: #1476B3; font-size:13px;"><a  href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?></a></p>
                         <?php endforeach; ?>
                     <?php endif; ?>
                    <p class="subtitulos font-bold pb-3"> </p> 
@@ -116,7 +118,15 @@ if ($is_podcast) :
                 </div>
 
                 <div style="max-width:205px;" class="w-full h-full">
-                    <img class=" rounded-md" style="height:205px;" id="thumb" src="<?php echo esc_url($image_url); ?>" alt="">
+                
+<? if(count($imagenes)>1):?>
+                 <img class=" rounded-md" style="height:205px;" id="thumb" src="<?php echo esc_url($imagenes[0]); ?>" alt="<?php echo esc_attr(get_the_title());?>">  
+<?else: ?>
+          <img class=" rounded-md" style="height:205px;" id="thumb" src="<?php echo esc_url($imagenes[0]); ?>" alt="<?php echo esc_attr(get_the_title());?>">
+      <?endif; ?>      
+         
+     
+               
                 </div>
             </div>
 
@@ -124,8 +134,11 @@ if ($is_podcast) :
 
     </div>
 
+
+
 <?php endif; ?>
-<?php echo esc_html($spotify_url); ?>
+
+
 
 <?php
 
@@ -144,52 +157,140 @@ if ($is_podcast) :
         <h1 class="md:text-4xl text-2xl my-3" style="color:#07376A;"><?php echo esc_html($entry_title); ?></h1>
       
         <div class="flex gap-3 items-center">
-       
-        
 
+<!-- CATEGORÍAS  -->
             <?php
-   if (!empty($categories)) {
-                                    echo '<h3 style=" text-transform: uppercase;" class="font-bold">';
-                                    foreach ($categories as $index => $category) {
-                                        echo esc_html($category->name);
-                                        if ($index !== count($categories) - 1) {
-                                            echo ', '; // Agregar coma y espacio entre categorías
-                                        }
-                                    }
-                                    echo '</h3>';
-                                }
-                               
+        
+if (!empty($categories)) {
+    echo '<h5 class=" text-md font-bold tracking-tight" style="text-transform:uppercase;">';
 
-                        
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ', '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
 
+    echo '</h5>';
+}
             if ($entry_tags) : ?>
                 <?php foreach ($entry_tags as $tag) : ?>
-                    <p class="rounded-lg text-white p-1  inline-flex" style="background-color: #1476B3; font-size:13px;"><?php echo esc_html($tag->name); ?></p>
+                    <p class="rounded-lg text-white p-1  inline-flex" style="background-color: #1476B3; font-size:13px;"><a  href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?></a></p>
                 <?php endforeach; ?>
             <?php endif; ?>
             <p> <?php echo esc_html($entry_date); ?></p>
 
         </div>
+        <? if (!$is_podcast) : ?>
 
-        <?php if (!$is_podcast) : ?>
-            <img class="w-full my-6" src="<?php echo esc_url($image_url); ?>" alt="">
-        <?php endif; ?>
-        <hr>
+<? if(count($imagenes)>1):?>
+<div class="py-6">
+        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+     <div class="relative overflow-hidden  h-96">
+
+    <? foreach ($imagenes as $imagen) : ?>
+              
+      
+
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img  style="object-fit:cover;" src="<?php echo esc_url($imagen); ?>" alt="" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" >
+        </div>
+
+      <? endforeach; ?>
+    </div>
+    <!-- Slider indicators -->
+    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+<?php foreach ($imagenes as $index => $imagen) : ?>
+    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide <?php echo esc_attr($index + 1); ?>" data-carousel-slide-to="<?php echo esc_attr($index); ?>"></button>
+<?php endforeach; ?>
+
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Anterior</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Siguiente</span>
+        </span>
+    </button>
+</div>
+</div>
+        
+<? else:?>
+
+<img src="<?php echo esc_url($imagenes[0]); ?>" class="py-6 w-full"/>
+
+<? endif; ?>
+
+        <?php else:?>
+        
+            <? if(count($imagenes)==2):?>
+                 <img class="w-full"  id="thumb" src="<?php echo esc_url($imagenes[1]); ?>" alt="<?php echo esc_attr(get_the_title());?>">
+
+            <?elseif(count($imagenes)>2):?>
+                 <div class="py-6">
+        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+     <div class="relative overflow-hidden  h-96">
+
+    <? foreach ($imagenes as $imagen) : ?>
+              
+        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img style="object-fit:cover;" src="<?php echo esc_url($imagen); ?>" alt="" class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" >
+        </div>
+
+      <? endforeach; ?>
+    </div>
+    <!-- Slider indicators -->
+    <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+<?php foreach ($imagenes as $index => $imagen) : ?>
+    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide <?php echo esc_attr($index + 1); ?>" data-carousel-slide-to="<?php echo esc_attr($index); ?>"></button>
+<?php endforeach; ?>
+    </div>
+    <!-- Slider controls -->
+    <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="sr-only">Anterior</span>
+        </span>
+    </button>
+    <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="sr-only">Siguiente</span>
+        </span>
+    </button>
+</div>
+</div>    
+      <?endif; ?>    
+         <?php endif;?>
+        <hr> 
         <div class="py-3">
-
-
-
-            <?php
-            
-           
-            
+           <?php    
             foreach ($fragments as $fragment) {
                 if (!preg_match('/<img[^>]+>/', $fragment)) {
                     echo $fragment;
                 }
             }
             ?>
-
 <div class="flex gap-5 items-center py-5">
 <p class="px-2 bold">COMPARTIR</p>
 <a href="mailto:?Título&body=Radio Universidad Nacional de San Luis:%20<?php the_permalink(); ?>"  target="blank">
@@ -214,15 +315,9 @@ if ($is_podcast) :
 <svg width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15.8333 2.5H4.16667C3.24583 2.5 2.5 3.24583 2.5 4.16667V15.8333C2.5 16.7542 3.24583 17.5 4.16667 17.5H15.8333C16.7542 17.5 17.5 16.7542 17.5 15.8333V4.16667C17.5 3.24583 16.7542 2.5 15.8333 2.5ZM14.2083 7.92833C14.2083 8 14.2083 8.07083 14.2083 8.21417C14.2083 10.9283 12.1367 14.0717 8.35083 14.0717C7.20833 14.0717 6.13667 13.7142 5.20833 13.1433C5.35083 13.1433 5.56583 13.1433 5.70833 13.1433C6.63667 13.1433 7.56583 12.7858 8.28 12.2858C7.35167 12.2858 6.6375 11.6433 6.35167 10.8575C6.49417 10.8575 6.6375 10.9292 6.70917 10.9292C6.92333 10.9292 7.06667 10.9292 7.28083 10.8575C6.3525 10.6433 5.63833 9.8575 5.63833 8.8575C5.92417 9 6.21 9.07167 6.56667 9.14333C5.995 8.64333 5.63833 8.07167 5.63833 7.3575C5.63833 7 5.71 6.64333 5.92417 6.3575C6.92417 7.57167 8.42417 8.42917 10.1383 8.5C10.1383 8.3575 10.0667 8.21417 10.0667 8C10.0667 6.8575 10.995 5.92833 12.1383 5.92833C12.71 5.92833 13.2808 6.1425 13.6383 6.57083C14.1383 6.49917 14.5667 6.285 14.9242 6.07083C14.7817 6.57083 14.4242 6.92833 13.9958 7.21333C14.4242 7.14167 14.7817 7.07083 15.21 6.85583C14.9225 7.28583 14.5658 7.6425 14.2083 7.92833Z" fill="#282828"/>
 </svg>
-
 </a>
 </div>
-
         </div>
-
-
-        
-
         <div class="flex items-center gap-3">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 20L4 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM6 12H4V10H6V12ZM6 9H4V7H6V9ZM6 6H4V4H6V6ZM13 12H8V10H13V12ZM16 9H8V7H16V9ZM16 6H8V4H16V6Z" fill="#535353"/>
@@ -294,34 +389,37 @@ endif;
     <a href="<?php the_permalink(); ?>">
         <img class="rounded-t-lg w-full" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" id="boxes-img"/>
     </a>
-    <div class="p-1 rounded-b-lg" style="background-color:#F5F5F5 ;" >
+    <div class="p-1 rounded-b-lg" style="background-color:#041824 ;" >
         <div class="relative flex flex-col justify-center" style="bottom: 50px; float: right;">
             <svg class="svgs" height="2.5em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
             </svg>
         </div>
         <a href="<?php the_permalink(); ?>" class="flex gap-5">
-            <?php
-            if (!empty($categories)) {
-                echo '<h5 class="mb-2 text-md font-bold tracking-tight" style="text-transform:uppercase;">';
-
-
-                foreach ($categories as $index => $category) {
-
-                    if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
-                        echo esc_html($category->name);
-                        if ($index !== count($categories) - 1) {
-                            echo ' '; // Agregar coma y espacio entre categorías
-                        }
-                    }
-                }
-                echo '</h5>';
-            }
-            ?>
+   <p class="mb-3 font-bold" style="color:#E5CC26;"><?php echo esc_html($entry_title); ?></p>
 
 
         </a>
-        <p class="mb-3 font-bold"><?php echo esc_html($entry_title); ?></p>
+     <!-- CATEGORÍAS  -->
+                    <?php
+          if (!empty($categories)) {
+    echo '<h5 class=" text-md font-bold tracking-tight text-white" style="text-transform:uppercase;font-size:11px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ', '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
+            ?>
     </div>
 </div>
 
@@ -397,27 +495,31 @@ endif;
             </svg>
         </div>
         <a href="<?php the_permalink(); ?>" class="flex gap-5">
-            <?php
-            if (!empty($categories)) {
-                echo '<h5 class="mb-2 text-md font-bold tracking-tight" style="text-transform:uppercase;">';
-
-
-                foreach ($categories as $index => $category) {
-
-                    if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
-                        echo esc_html($category->name);
-                        if ($index !== count($categories) - 1) {
-                            echo ' '; // Agregar coma y espacio entre categorías
-                        }
-                    }
-                }
-                echo '</h5>';
-            }
-            ?>
-
+         <p class="mb-3 font-bold" style="color:#07376A;"><?php echo esc_html($entry_title); ?></p>
 
         </a>
-        <p class="mb-3 font-bold"><?php echo esc_html($entry_title); ?></p>
+       
+<!-- CATEGORÍAS  -->
+            <?php
+           if (!empty($categories)) {
+    echo '<h5 class=" text-md font-bold tracking-tight" style="text-transform:uppercase; font-size:12px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ', '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
+            ?>
+
     </div>
 </div>
 
@@ -448,21 +550,31 @@ endif;
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Encuentra el elemento del subtítulo por su id
-    var subtituloElement = document.getElementById('subtitulo');
-    var subtextoElement = document.getElementById('subtexto');
-    var podcassElement = document.getElementById('podcast');
-
-    var otraUbicacionContainer_1 = document.querySelector('.subtitulos');
-    var otraUbicacionContainer_2 = document.querySelector('.subtextos');
-    var otraUbicacionContainer_3 = document.querySelector('.podcasts');
-    // Mueve el subtítulo al nuevo contenedor
-    otraUbicacionContainer_1.appendChild(subtituloElement);
-    otraUbicacionContainer_2.appendChild(subtextoElement);
-    otraUbicacionContainer_3.appendChild(podcassElement);
+  var subtituloElement = document.getElementById('subtitulo');
+  var subtextoElement = document.getElementById('subtexto');
+  var podcastElement = document.getElementById('podcast');
+  var otraUbicacionContainer_1 = document.querySelector('.subtitulos');
+  var otraUbicacionContainer_2 = document.querySelector('.subtextos');
+  var otraUbicacionContainer_3 = document.querySelector('.podcasts');
+  if (subtituloElement && subtextoElement && podcastElement &&
+      otraUbicacionContainer_1 && otraUbicacionContainer_2 && otraUbicacionContainer_3) {
+    var subtituloClone = subtituloElement.cloneNode(true);
+    var subtextoClone = subtextoElement.cloneNode(true);
+    var podcastClone = podcastElement.cloneNode(true);
+    subtituloElement.remove();
+    subtextoElement.remove();
+    podcastElement.remove();
+    otraUbicacionContainer_1.appendChild(subtituloClone);
+    otraUbicacionContainer_2.appendChild(subtextoClone);
+    otraUbicacionContainer_3.appendChild(podcastClone);
+  }
 });
+
 </script>
 <style>
+.wp-block-audio audio{
+    margin-top:10px;
+}
     .podcasts audio::-webkit-media-controls-play-button,
 .podcasts audio::-webkit-media-controls-panel {
   background-color: #E5CC26;

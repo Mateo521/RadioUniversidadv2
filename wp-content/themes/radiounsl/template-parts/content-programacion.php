@@ -69,14 +69,6 @@ $the_query_sabados = new WP_Query($args_sabados);
 
 
 ?>
-
-
-        <!-- 
-<img src="" alt="">
-<h2><a href="<?php the_permalink(); ?>" title="Read"></a></h2>
-<?php the_excerpt(); ?>
-
--->
         <div class="grid grid-rows-2 w-full my-6 h-full">
             <div style="height:175px;" class="h-full">
                 <a href="<?php the_permalink(); ?>">
@@ -160,14 +152,6 @@ endif; ?>
 
 
 ?>
-
-
-        <!-- 
-<img src="" alt="">
-<h2><a href="<?php the_permalink(); ?>" title="Read"></a></h2>
-<?php the_excerpt(); ?>
-
--->
         <div class="grid grid-rows-2 w-full my-6 h-full">
             <div style="height:175px;" class="h-full">
                 <a href="<?php the_permalink(); ?>">

@@ -15,7 +15,7 @@ $args_estatico = array(
 
 $args_podcasts = array(
     'category_name' => 'podcast', // Nombre de la categoría de podcasts
-    'posts_per_page' => 6 // Mostrar todas las noticias de podcasts
+    'posts_per_page' => 9 // Mostrar todas las noticias de podcasts
 );
 
 $args_institucional = array(
@@ -153,39 +153,24 @@ foreach ($etiquetas as $etiqueta) {
                                       
                                         } ?>
 
-                                           
-                                               
                                     </div>
                                 </div>
                             </div>
                             </div>
                         </div>
             </a>
-
-
-
      <?php
-
-
         foreach ($institucional_query->posts as $post) : setup_postdata($post);
             // Obtener la URL de la primera imagen encontrada en el contenido
             $content = get_the_content();
             // Obtener el ID de la imagen destacada (thumbnail)
-
-
             preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
             $image_url = isset($matches[1]) ? $matches[1] : '';
             // Obtener título y etiquetas
             $entry_title = get_the_title();
             $entry_tags = get_the_tags();
-
-     
-
         ?>
-
-
-
-            <a href="<?php the_permalink(); ?>">
+             <a href="<?php the_permalink(); ?>">
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <!-- SI NO HAY IMAGEN -->
                     <?php if (!empty($image_url)) : ?>
@@ -199,41 +184,32 @@ foreach ($etiquetas as $etiqueta) {
                                     <div class="relative w-full" style="color: white; padding: 0 75px;">
                                         <h4 class="rounded-lg text-white p-2 my-2 inline-flex" style="background-color: #0f3349;">RADIO UNSL</h4> 
                                         <div class="flex text-xs">
-                                                    <h4 class="rounded-lg text-white p-2 mx-1 inline-flex" style="background-color: #1476B3;">INSTITUCIONAL</h4>
-                                            
+                                <a  href="<?php echo esc_url(home_url('/category/institucional')); ?>">
+                                                    <h4 class="rounded-lg text-white p-2 mx-1 inline-flex" style="background-color: #1476B3;"> INSTITUCIONAL</h4>
+                                      </a>  
                                         </div>
+                        <a href="<?php the_permalink(); ?>">
                                         <h1 class="text-6xl mt-4" id="title"><?php echo esc_html($entry_title); ?></h1>
+                                   </a>     
                                     </div>
                                 </div>
                             </div>
                             </div>
                         </div>
-            </a>
+               </a>   
 
 <? endforeach; ?>
-
-
-
         <?php
-
-
         foreach ($latest_posts->posts as $post) : setup_postdata($post);
             // Obtener la URL de la primera imagen encontrada en el contenido
             $content = get_the_content();
             // Obtener el ID de la imagen destacada (thumbnail)
-
-
             preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
             $image_url = isset($matches[1]) ? $matches[1] : '';
             // Obtener título y etiquetas
             $entry_title = get_the_title();
             $entry_tags = get_the_tags();
-
-     
-
         ?>
-
-
             <a href="<?php the_permalink(); ?>">
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <!-- SI NO HAY IMAGEN -->
@@ -250,25 +226,22 @@ foreach ($etiquetas as $etiqueta) {
                                         <div class="flex text-xs">
                                             <?php if ($entry_tags) : ?>
                                                 <?php foreach ($entry_tags as $tag) : ?>
-                                                    <h4 class="rounded-lg text-white p-2 mx-1 inline-flex" style="background-color: #1476B3;"><?php echo esc_html($tag->name); ?></h4>
+                                                    <h4 class="rounded-lg text-white p-2 mx-1 inline-flex" style="background-color: #1476B3;"><a  href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?>
+                                                    </a>
+                                                    </h4>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
-
                                         </div>
-                                        <h1 class="text-6xl mt-4" id="title"><?php echo esc_html($entry_title); ?></h1>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <h1 class="text-6xl mt-4" id="title"><?php echo esc_html($entry_title); ?></h1>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             </div>
                         </div>
             </a>
-
         <?php endforeach; ?>
-
-
-
-
-
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -302,8 +275,9 @@ foreach ($etiquetas as $etiqueta) {
 <!-- FINCAROUSEL -->
 
 
+
 <!-- SECCION NOTICIAS -->
-<section style="background-color: #F0F0F0; padding: 55px;">
+<section style="background-color: #F0F0F0;" class="p-6">
 
 
     <div class="flex justify-center">
@@ -316,31 +290,53 @@ foreach ($etiquetas as $etiqueta) {
 
 
 
-                <?php foreach ($institucional_query->posts as $post) : setup_postdata($post); ?>
-                    <?php
+                <?php foreach ($institucional_query->posts as $post) : setup_postdata($post);
+                
+
+        $content = get_the_content();
+
+
+if (have_posts()) :
+
+        // Busca y almacena todas las imágenes dentro del contenido en un arreglo
+        $imagenes = array();
+        preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
+        if (!empty($matches[1])) :
+            foreach ($matches[1] as $image_url) :
+                $imagenes[] = $image_url;
+            endforeach;
+        endif;
+endif;
 
 
                     // Obtener la URL de la primera imagen encontrada en el contenido
-                    $content = get_the_content();
-                    preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
-                    $image_url = isset($matches[1]) ? $matches[1] : '';
+             
+                    preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);;
                     // Obtener título y etiquetas
                     $entry_title = get_the_title();
 
                     $categories = get_the_category();
                     $entry_date = get_the_date('d/m/Y');
 
-                    $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*<\/figure>/is';
+                   $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*?<\/figure>/is';
+
+
+
+
+                    
                     ?>
-                    <img src="<?php echo esc_url($image_url); ?>" id="noticia-g" alt="<?php echo esc_attr($entry_title); ?>">
+                      <a href="<?php the_permalink(); ?>">     
+                    <img src="<?php echo esc_url($imagenes[0]); ?>" id="noticia-g" alt="<?php echo esc_attr($entry_title); ?>">
 
-
+ </a>
                     <div class="p-6 w-full  bg-white h-full shadow-lg shadow-gray-500/50">
-                        <a href="<?php the_permalink(); ?>">
+                      
                            
 
-
+   <a href="<?php the_permalink(); ?>">   
                             <p style="color: #07376A; text-transform: uppercase;" class="font-bold py-4"><?php echo esc_html($entry_title); ?></p>
+ </a>
+
                             <?php
                              if(preg_match($pattern,$content,$matches2)){
                                                 echo $matches2[0];
@@ -350,10 +346,99 @@ foreach ($etiquetas as $etiqueta) {
 
 
                                             ?>
+  <a href="<?php the_permalink(); ?>">   
+    <?php the_excerpt(); ?>
+</a>
 
-                    <?php 
+
+<div class="flex items-center justify-between gap-3 py-4">
+
+                           
+<?php
+                               // Obtener las categorías de la entrada actual
+                          if (!empty($categories)) {
+    echo '<h5 class="text-md font-bold tracking-tight" style="text-transform:uppercase;font-size:12px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ', '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
+                            ?>
+                             <h5><?php echo esc_html($entry_date); ?></h5>
+
+
+</div>
+
+                  
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <div class="grid grid-col-1 items-center gap-3">
+                <?php $counter = 0;
+                foreach ($latest_posts->posts as $post) : setup_postdata($post); 
+                
+
+    $content = get_the_content();
+
+
+if (have_posts()) :
+
+        // Busca y almacena todas las imágenes dentro del contenido en un arreglo
+        $imagenes = array();
+        preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
+        if (!empty($matches[1])) :
+            foreach ($matches[1] as $image_url) :
+                $imagenes[] = $image_url;
+            endforeach;
+        endif;
+endif;
+
+
+                    // Obtener la URL de la primera imagen encontrada en el contenido
+             
+                    preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);;
+                    // Obtener título y etiquetas
+                    $entry_title = get_the_title();
+
+                    $categories = get_the_category();
+                    $entry_date = get_the_date('d/m/Y');
+
+                     $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*?<\/figure>/is';
+
+
+
+
+                    
+                    ?>
+
+<div id="noticia-d" class="w-full rounded-r-lg shadow-lg shadow-gray-500/50">
+                    <div class="grid md:grid-cols-2 grid-cols-1">
+         
+                        <img  class="w-full h-full object-cover noticia-der" src="<?php echo esc_url($imagenes[0]); ?>" alt="<?php echo esc_attr($entry_title); ?>">
+                        <div class="p-3 bg-white rounded-tr-lg ">
+
+
+                            <a href="<?php the_permalink(); ?>">
+
+                
+                                <h3 style="color: #07376A; " class="font-bold py-4"><?php echo esc_html($entry_title); ?></h3>
+
+<p class="py-2">
+        <?php 
 $contenido = wp_strip_all_tags(get_the_content());
-$limiteCaracteres = 300;
+$limiteCaracteres = 50;
 
 if (strlen($contenido) > $limiteCaracteres) {
 
@@ -369,82 +454,43 @@ if (strlen($contenido) > $limiteCaracteres) {
 
 echo $textoRecortado;
 ?>
+</p>
 
 
+                                <div class="flex items-center justify-between gap-3" style="flex-wrap:wrap;">
 
-
-
-
-                           
-<?php
-                               // Obtener las categorías de la entrada actual
-                            if (!empty($categories)) {
-                                echo '<p style="text-transform: uppercase;">';
-                                foreach ($categories as $index => $category) {
-                                    echo esc_html($category->name);
-                                    if ($index !== count($categories) - 1) {
-                                        echo ', '; // Agregar coma y espacio entre categorías
-                                    }
-                                }
-                                echo '</p>';
-                            }?>
-                             <h5><?php echo esc_html($entry_date); ?></h5>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-
-            <div class="grid grid-col-1 items-center gap-3">
-                <?php $counter = 0;
-                foreach ($latest_posts->posts as $post) : setup_postdata($post); ?>
-
-                    <?php
-                 //   $counter++;
-                //    if ($counter === 1) :
-                //        continue;
-               //     endif;
-                    // Obtener la URL de la primera imagen encontrada en el contenido
-                    $content = get_the_content();
-                    preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
-                    $image_url = isset($matches[1]) ? $matches[1] : '';
-                    // Obtener título y etiquetas
-                    $entry_title = get_the_title();
-                    $categories = get_the_category();
-                    $entry_date = get_the_date('d/m/Y');
-                    $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*<\/figure>/is';
-                    
-                    ?>
-<div id="noticia-d" class="w-full rounded-r-lg shadow-lg shadow-gray-500/50">
-                    <div class="grid grid-cols-2">
-         
-                        <img class="w-full h-full object-cover rounded-tl-lg" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>">
-                        <div class="p-3 bg-white ">
-                            <a href="<?php the_permalink(); ?>">
-
-                
-                                <h3 style="color: #07376A; text-transform: uppercase;" class="font-bold py-4"><?php echo esc_html($entry_title); ?></h3>
-                                <h5><?php echo esc_html($entry_date); ?></h5>
-
-
+                                     <h5><?php echo esc_html($entry_date); ?></h5>
 
                                 
-  <?php
+                                    <?php
                                 // Obtener las categorías de la entrada actual
 
                                 // Verificar si hay categorías y mostrarlas con enlaces
-                                if (!empty($categories)) {
-                                    echo '<p style="text-transform: uppercase;">';
-                                    foreach ($categories as $index => $category) {
-                                        echo esc_html($category->name);
-                                        if ($index !== count($categories) - 1) {
-                                            echo ', '; // Agregar coma y espacio entre categorías
-                                        }
-                                    }
-                                    echo '</p>';
-                                }
+                               if (!empty($categories)) {
+    echo '<h5 class="text-md font-bold tracking-tight" style="text-transform:uppercase;font-size:12px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ', '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
                                 ?>
+
+                                </div>
+
                             </a>
+
+
+
                         </div>
 
 
@@ -457,7 +503,7 @@ echo $textoRecortado;
 
                     
                       <?php  if(preg_match($pattern,$content,$matches2)): ?>
-                    <div class="w-full bg-white rounded-b-lg" style="margin:0; padding:10px 10px 0 10px">
+                    <div class="w-full bg-white rounded-b-lg" id="news-audio" style="margin:0;">
           
                                            <?php     echo $matches2[0]; ?>
                                            
@@ -531,7 +577,7 @@ echo $textoRecortado;
                             if ($category->slug !== "sin-categoria" && $category->slug !== "programacion") {
                                 echo esc_html($category->name);
                                 if ($index !== count($categories) - 1) {
-                                    echo ' '; // Agregar coma y espacio entre las categorías
+                                    echo ', '; // Agregar coma y espacio entre las categorías
                                 }
                             }
                         }
@@ -550,15 +596,6 @@ echo $textoRecortado;
                                 </div>
                              
                         </div>
-
-<!-- 
-                        <div class="justify-center" id="envivo">
-                          
-                                <h2 id="info-slider" style="border:solid rgb(168 162 158);" class="text-3xl   p-2 text-center font-extrabold tracking-tight leading-none text-white rounded-lg bg-red-600 inline-flex">
-                                    AL AIRE</h2>
-                          
-                        </div>
- -->
                     </div>
                 </div>
                 </a>
@@ -650,7 +687,7 @@ echo $textoRecortado;
                             if ($category->slug !== "sin-categoria" && $category->slug !== "programacion") {
                                 echo esc_html($category->name);
                                 if ($index !== count($categories) - 1) {
-                                    echo ' '; // Agregar coma y espacio entre las categorías
+                                    echo ', '; // Agregar coma y espacio entre las categorías
                                 }
                             }
                         }
@@ -675,31 +712,13 @@ echo $textoRecortado;
     </li>
 
    <?php endforeach; ?>
-
-    <!--
-    <li class="slide">
-      <div class="parallax"><p>B➡️</p></div>
-    </li>
-    <li class="slide">
-      <div class="parallax"><p>C</p></div>
-    </li>
-    <li class="slide">
-      <div class="parallax"><p>D</p></div>
-    </li>
-    <li class="slide">
-      <div class="parallax"><p>E</p></div>
-    </li>
-    <li class="slide">
-      <div class="parallax"><p>F</p></div>
-    </li>
-    <li class="slide">
-      <div class="parallax"><p>G</div>
-    </li>
-    -->
   </ul>
   </a>
 </div>
 <style>
+#news-audio .wp-block-audio audio{
+padding:0;
+}
 .entry-title{
         font-size: 3.75rem;
     line-height: 1;
@@ -805,10 +824,22 @@ echo $textoRecortado;
 .slider .slide:nth-child(6n+5) { background: #34495e; }
 .slider .slide:nth-child(6n+6) { background: #f1c40f; }
 */
+#podcast{
+    padding:0;
+}
+/*
+.gt_switcher_wrapper{
+    top:65px !important;
+    right:0;
+}
+*/
 </style>
 
 
 <!-- SECCION PODCAST -->
+
+
+
 
 <section style="background-color: #010B15;">
     <h1 class="text-center " id="podcast">PODCAST</h1>
@@ -831,7 +862,7 @@ echo $textoRecortado;
                         $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
                         $content = get_the_content();
 
-                        $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*<\/figure>/is';
+                           $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*?<\/figure>/is';
 
                         preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
 
@@ -848,7 +879,7 @@ echo $textoRecortado;
                         $categories = get_the_category();
                         $entry_date = get_the_date('d/m/Y');
 
-                        if ($counter <= 3) :
+                        if ($counter >= 4) :
                             continue;
                         endif;
 
@@ -876,40 +907,74 @@ echo $textoRecortado;
 
                                 <a href="<?php the_permalink(); ?>" class="flex gap-5 w-full justify-between">
 
-                                    <?php
-
-
-                                    if (!empty($categories)) {
-                                        echo '<h5 class="mb-2 text-md font-bold tracking-tight  " id="title-pd" style="text-transform:uppercase;">';
-
-
-
-                                        foreach ($categories as $index => $category) {
-
-                                            if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
-                                                echo esc_html($category->name);
-                                                if ($index !== count($categories) - 1) {
-                                                    echo ' '; // Agregar coma y espacio entre categorías
-                                                }
-                                            }
-                                        }
-                                        echo '</h5>';
-                                    }
-                                    ?>
-                                    <h6 class="text-gray-500"><?php echo esc_html($entry_date); ?></h6>
-                                </a>
-                                <p class="mb-3 font-bold text-white dark:text-gray-400"><?php echo esc_html($entry_title); ?>
-                                </p>
+                                   
                                
+                                </a>
+                             <a href="<?php the_permalink(); ?>">  <p class="mb-3 font-bold text-white dark:text-gray-400" style="color:#E5CC26;"><?php echo esc_html($entry_title); ?>
+                                </a> 
+
+      <a href="<?php the_permalink(); ?>">                         
+<p class="py-2 text-white">
+        <?php 
+$contenido = wp_strip_all_tags(get_the_content());
+$limiteCaracteres = 100;
+
+if (strlen($contenido) > $limiteCaracteres) {
+
+    $textoRecortado = substr($contenido, 0, $limiteCaracteres);
+
+    
+     $textoRecortado .= '...';
+} else {
+   
+    $textoRecortado = $contenido;
+}
+
+
+echo $textoRecortado;
+?>
+</p>
+</a>
+
+
                             <?php
                              if(preg_match($pattern,$content,$matches2)){
                                                 echo $matches2[0];
                                             }
                                             ?>
-                
+                    <div class="flex items-center justify-between">
+                     <h6 class="text-gray-500"><?php echo esc_html($entry_date); ?></h6>
+                                 <?php
 
-                                <p class="mb-3 font-normal text-white dark:text-gray-400"><?php echo esc_html(strip_tags($short_content)); ?></p>
 
+                                   if (!empty($categories)) {
+    echo '<h5 class="text-white text-md font-bold tracking-tight" style="text-transform:uppercase;font-size:12px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1 ) {
+                echo ' '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
+                                    ?>
+
+
+
+
+
+
+
+
+                             <!--   <p class="mb-3 font-normal text-white dark:text-gray-400"><?php echo esc_html(strip_tags($short_content)); ?></p> -->
+                                </div>
                             </div>
                         </div>
 
@@ -943,51 +1008,64 @@ echo $textoRecortado;
                         }
 
                         // Obtener título y etiquetas
-
+             $pattern = '/<figure[^>]*class="wp-block-audio"[^>]*>.*?<\/figure>/is';
                         $entry_title = get_the_title();
                         $categories = get_the_category();
                         $entry_date = get_the_date('d/m/Y');
 
-                        if ($counter >= 8) :
+                          if ($counter <= 3) :
                             continue;
                         endif;
                 ?>
-
+<div>
                         <div class="max-w-sm rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid " id="boxes">
                             <a href="<?php the_permalink(); ?>">
                                 <img class="rounded-t-lg w-full" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" id="boxes-img"/>
                             </a>
-                            <div class="p-1 rounded-b-lg" style="background-color:#F5F5F5 ;" >
+                            <div class="p-1" style="background-color:#F5F5F5 ;" >
                                 <div class="relative flex flex-col justify-center" style="bottom: 50px; float: right;">
                                     <svg class="svgs" height="2.5em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                                     </svg>
                                 </div>
                                 <a href="<?php the_permalink(); ?>" class="flex gap-5">
-                                    <?php
-                                    if (!empty($categories)) {
-                                        echo '<h5 class="mb-2 text-md font-bold tracking-tight" style="text-transform:uppercase;">';
-
-
-                                        foreach ($categories as $index => $category) {
-
-                                            if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
-                                                echo esc_html($category->name);
-                                                if ($index !== count($categories) - 1) {
-                                                    echo ' '; // Agregar coma y espacio entre categorías
-                                                }
-                                            }
-                                        }
-                                        echo '</h5>';
-                                    }
-                                    ?>
-
+                            
+     <p class="mb-3 font-bold"><?php echo esc_html($entry_title); ?></p>
 
                                 </a>
-                                <p class="mb-3 font-bold"><?php echo esc_html($entry_title); ?></p>
+                           
+                                        <?php
+                                  if (!empty($categories)) {
+    echo '<h5 class=" text-md font-bold tracking-tight" style="text-transform:uppercase;font-size:12px;">';
+
+    foreach ($categories as $index => $category) {
+        if ($category->slug !== "sin-categoria" && $category->slug !== "podcast") {
+            $category_link = get_category_link($category->term_id); // Obtenemos el enlace de la categoría
+            echo '<a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a>';
+            
+            if ($index !== count($categories) - 1) {
+                echo ' '; // Agregar coma y espacio entre categorías
+            }
+        }
+    }
+
+    echo '</h5>';
+}
+
+                                    ?>
+                                   
                             </div>
                         </div>
+    <?php
+                             if(preg_match($pattern,$content,$matches2)){
+                                                echo $matches2[0];
+                                            }
 
+  
+
+
+                                            ?>
+</div>
                 <?php
                     endwhile;
                 //  wp_reset_postdata();
@@ -1016,11 +1094,11 @@ echo $textoRecortado;
 <section class="bg-white">
 <div class="max-w-screen-xl  bg-white" id="card-i">
     <div class="grid grid-cols-2 shadow-lg shadow-gray-500/50" id="historia">
-        <img class="w-full h-full object-cover" src="<?php echo get_template_directory_uri(); ?>/assets/images/aire.png" alt="<?php echo esc_attr($entry_title); ?>">
+        <img class="w-full h-full object-cover" src="<?php echo get_template_directory_uri(); ?>/assets/images/aire.png" alt="">
         <div class=" w-full text-center p-6 m-6">
             <h1 class="text-5xl font-bold p-6" id="title-card">30 años de Radio Universidad</h1>
             <p class="text-xl p-6 font-bold" id="title-card-2">La misión de la emisora es representar los valores de
-                una universidad abierta que se vinculacon la comunidad que le da sentido y justifica su razón de
+                una universidad abierta que se vincula con la comunidad que le da sentido y justifica su razón de
                 ser.</p>
             <a href="<?php echo esc_url(home_url('/institucional')); ?>">
                 <p class="rounded-lg p-4 text-white inline-flex" style="background-color: #07376A;"> Conocé nuestra
@@ -1057,65 +1135,50 @@ echo $textoRecortado;
     </div>
 </div>
 <!-- FINSECCION FORMULARIO -->
-
-
 <script>
-// Define la función para obtener la duración del audio
-// Función para obtener la duración de todos los elementos de audio
 function obtenerDuracionDeTodosLosAudios() {
-    var bloquesAudio = document.querySelectorAll('#pod-card .wp-block-audio');
-    var i = 0;
-    bloquesAudio.forEach(function(bloque) {
-        var reproductorAudio = bloque.querySelector('audio');
-
-        if (reproductorAudio) {
-            reproductorAudio.addEventListener('loadedmetadata', function() {
-                var duracionAudio = reproductorAudio.duration;
-                console.log('Duración del audio: ' + duracionAudio + ' segundos');
-
-                /*
-                var parrafoDuracion = document.createElement('p');
-                parrafoDuracion.textContent = (duracionAudio/60) + ' minutos';
-                parrafoDuracion.style.color="white";
-                bloque.appendChild(parrafoDuracion);
-                */
-
-                 var hora1 = document.getElementsByClassName("hora");
-
-                hora1[i].innerHTML=Math.floor(duracionAudio/60) + ' m';
-
-            });
-        }
-        i++;
+  var tiempo = [];
+  var bloquesAudio = document.querySelectorAll('#pod-card .max-w-sm');
+  let elementsArray = Array.from(bloquesAudio);
+  var hora1 = document.getElementsByClassName("hora");
+  function cargarMetadato(audio) {
+    return new Promise(function(resolve) {
+      audio.onloadedmetadata = function() {
+        resolve(audio.duration);
+      };
     });
+  }
+  var promesas = elementsArray.map(function(bloquesAudio) {
+    var reproductorAudio = bloquesAudio.querySelector('audio');
+    if (reproductorAudio) {
+      return cargarMetadato(reproductorAudio);
+    } else {
+      return Promise.resolve(0);
+    }
+  });
+  Promise.all(promesas).then(function(duraciones) {
+    for (var j = 0; j < duraciones.length; j++) {
+      if (duraciones[j] != 0) {
+        hora1[j].innerHTML = Math.floor(duraciones[j] / 60) + ' m';
+      }
+    }
+  });
 }
-
-// Llama a la función cuando se dispare el evento "DOMContentLoaded"
-document.addEventListener('DOMContentLoaded', obtenerDuracionDeTodosLosAudios);
-
-
-
-
+obtenerDuracionDeTodosLosAudios();
 class Slider {
   constructor(el) {
-
     this.el = el;
     this.container = this.el.querySelector('.slides-container');
     this.slides = this.container.querySelectorAll('.slide');
     this.parallaxes = this.container.querySelectorAll('.parallax');
-
     this.current = 0;
     this.currentPos;
     this.mouseOffset;
     this.moving = false;
-
     this.container.style.width = this.slides.length * 100 + '%';
     this.slides[0].classList.add('current');
-
     let startPos, lastTouchX;
-
     const
-
     dragStart = e => {
       e.stopPropagation();
       if (e.touches) lastTouchX = e.touches[0].clientX;
@@ -1160,9 +1223,7 @@ class Slider {
         this.prev();
       }
     });
-
   }
-
   move() {
     if (this.moving) {
       this.container.style.transform = 'translate3d(' + (this.currentPos + this.mouseOffset) + 'px, 0, 0)';

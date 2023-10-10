@@ -10,29 +10,11 @@
     <!-- SECCIONCONTACTO -->
 
     <div class="md:grid grid-cols-2 items-center bg-white" style="justify-items: center;">
-        <div class="text-center p-6 my-6">
+        <div class="text-center p-6">
             <h1 class="text-4xl font-bold" style="color: #07376A;">Dejanos un mensaje</h1>
 
             <div class="flex justify-center ">
                 <div style="max-width: 640px;width: 100%;">
-<!-- 
-     <form class="p-6" method="post" action="">
-            <div class="mb-6">
-                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                <input type="text" id="nombre" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tu nombre" required>
-            </div>
-            <div class="mb-6">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mail</label>
-                <input name="email" type="email" id="mail" placeholder="Tu mail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-            </div>
-            <div class="mb-6">
-                <label for="mensaje" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mensaje</label>
-                <textarea name="message" placeholder="Tu mensaje" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required style="padding: 5px 5px 45px 5px;"></textarea>
-            </div>
-            <button name="contact_form_submit" style="position: relative; left: 50%; transform: translateX(-50%); background-color: #07376A; margin: 50px 0 100px 0;" type="submit" class=" text-white text-center  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600">Enviar
-                mensaje</button>
-        </form>
- -->
                     <form method="post" action="" class="p-6">
                         <div class="flex gap-5">
                             <div class="mb-6 w-full">

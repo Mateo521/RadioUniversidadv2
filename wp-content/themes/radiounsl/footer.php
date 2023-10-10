@@ -28,7 +28,7 @@ function displayfooter(){
   activado2 = !activado2;
 }
 </script>
-
+<div class="footer">
 <footer id="footer">
 
 
@@ -95,12 +95,12 @@ function displayfooter(){
             </ul>
         </div>
     </div>
+    <hr>
+
+   <p class="px-6" style="font-size:13px;">Diseño y Desarrollo a cargo de la Secretaría de Comunicación Institucional - Versión 1.0-beta - Contacto: <a href="mailto:sci@unsl.edu.ar" style="color:#007bff">sci@unsl.edu.ar</a></p>
+
 </footer>
-
-
-
-
-
+</div>
 <!-- Main modal -->
 <div id="modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-md max-h-full">
@@ -136,7 +136,9 @@ function displayfooter(){
                              
                             <span class="flex-1 ml-3 whitespace-nowrap">Instagram</span>
                         </a>
+
                     </li>
+
                     <li>
                         <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=radiouniversidad.unsl.edu.ar" rel="noopener noreferrer" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                 <img class="h-4" src="<?php echo get_template_directory_uri(); ?>/assets/images/2021_Facebook_icon.svg.png"/>
@@ -168,32 +170,22 @@ function displayfooter(){
         </div>
     </div>
 </div>
-
-
 <!-- FINFOOTER -->
-
 <!-- SECCION RADIO -->
-
-
 <div class="w-full block" style="height: 115px; background-color:#282828;"></div>
-
 <!--REPRODUCTOR MOBILE-->
 <div id="radio" class="w-full  md:hidden fixed flex bottom-0 z-30" style=" background: rgb(249,250,251);
 background: linear-gradient(0deg, rgba(249,250,251,0.9) 30%, rgba(212,212,212,0.9) 100%);">
-
-
 <div data-accordion="collapse2" id="accordion-collapse2">
 <h2 class="accordion-collapse-heading-4">
-<button class="absolute flex gap-3 items-center" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4" style="right:0; top:-42px; padding:15px 20px; background: linear-gradient(180deg, rgba(249, 250, 251, 0.9) 30%, rgba(212, 212, 212, 0.9) 100%);" type="submit" onclick="displayfooter();" value="prueba">
-<svg data-accordion-icon="" class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<button class="absolute flex gap-3 items-center" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4" style="right:0; top:-54px; padding:15px 20px; background: linear-gradient(180deg, rgba(249, 250, 251, 0.9) 30%, rgba(212, 212, 212, 0.9) 100%);" type="submit" onclick="displayfooter();" value="prueba">
+REPRODUCTOR<svg data-accordion-icon="" class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"></path>
       </svg>
 </button>
 </h2>
 <div id="accordion-collapse-body-4"></div>
 </div>
-
- 
     <div class="flex justify-between w-full">
         <div class="m-2 flex justify-between w-full ">
             <div class="p-1 text-sm rounded-lg text-white flex items-center gap-1 inline-flex h-5" style="background-color:  #07376A;"><img src="https://i.giphy.com/media/R9vSQdiH6I5Bqi9xzx/giphy.webp" alt="" style="width:7px;"> En
@@ -204,15 +196,10 @@ background: linear-gradient(0deg, rgba(249,250,251,0.9) 30%, rgba(212,212,212,0.
                 <p class="m-0 p-0" id="open_close-2"></p>
             </div>
         </div>
-
-
-
     </div>
-
-
     <div  id="radio" class="container-4 md:hidden absolute flex justify-center w-full items-center md:gap-5 gap-1" style="left:-49px;">
        <label class=" md:hidden flex" style="">
-    <input type="range" id="vol" max="1" min="0" step="0.01" value="1" onchange="changevolume(this.value)" />
+    <input type="range" id="vol" max="1" min="0" step="0.01" value="1" onchange="changevolume(this.value)" style="background-color:inherit;" />
         </input>
         <!-- 
         <span id="display1">
@@ -232,13 +219,10 @@ background: linear-gradient(0deg, rgba(249,250,251,0.9) 30%, rgba(212,212,212,0.
                 </svg>
             </div>
         </button>
-
-
         <button type="button" data-modal-target="modal" data-modal-toggle="modal">
   <svg class="px-1" width="35" height="35" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 20C14.1667 20 13.4583 19.7083 12.875 19.125C12.2917 18.5417 12 17.8333 12 17C12 16.8833 12.0083 16.7623 12.025 16.637C12.0417 16.5123 12.0667 16.4 12.1 16.3L5.05 12.2C4.76667 12.45 4.45 12.6457 4.1 12.787C3.75 12.929 3.38333 13 3 13C2.16667 13 1.45833 12.7083 0.875 12.125C0.291667 11.5417 0 10.8333 0 10C0 9.16667 0.291667 8.45833 0.875 7.875C1.45833 7.29167 2.16667 7 3 7C3.38333 7 3.75 7.07067 4.1 7.212C4.45 7.354 4.76667 7.55 5.05 7.8L12.1 3.7C12.0667 3.6 12.0417 3.48767 12.025 3.363C12.0083 3.23767 12 3.11667 12 3C12 2.16667 12.2917 1.45833 12.875 0.875C13.4583 0.291667 14.1667 0 15 0C15.8333 0 16.5417 0.291667 17.125 0.875C17.7083 1.45833 18 2.16667 18 3C18 3.83333 17.7083 4.54167 17.125 5.125C16.5417 5.70833 15.8333 6 15 6C14.6167 6 14.25 5.929 13.9 5.787C13.55 5.64567 13.2333 5.45 12.95 5.2L5.9 9.3C5.93333 9.4 5.95833 9.51233 5.975 9.637C5.99167 9.76233 6 9.88333 6 10C6 10.1167 5.99167 10.2373 5.975 10.362C5.95833 10.4873 5.93333 10.6 5.9 10.7L12.95 14.8C13.2333 14.55 13.55 14.354 13.9 14.212C14.25 14.0707 14.6167 14 15 14C15.8333 14 16.5417 14.2917 17.125 14.875C17.7083 15.4583 18 16.1667 18 17C18 17.8333 17.7083 18.5417 17.125 19.125C16.5417 19.7083 15.8333 20 15 20Z" fill="#282828"/>
 </svg>
-  
 </button>
     </div>
 </div>
@@ -265,19 +249,13 @@ REPRODUCTOR
             <div class="m-4">
                 <div class="p-1 text-sm rounded-lg text-white flex items-center gap-1 inline-flex" style="background-color:  #07376A;"><img src="https://i.giphy.com/media/R9vSQdiH6I5Bqi9xzx/giphy.webp" alt="" style="width:7px;"> En
                     vivo</div>
-                <p class="font-bold pt-8" id="open_close"></p>
+                <p class="font-bold" id="open_close"></p>
             </div>
-
-
-
         </div>
-
-
     </div>
-   
     <div class="container-4 hidden absolute md:flex justify-center w-full gap-8" style="top: 50%; transform: translateY(-50%); align-items:center; left:-46px;">
      <label class=" hidden md:block" style=" margin:0;z-index:45; padding:0;  ">
-    <input type="range" id="vol" min="0" max="1" value="1" step="0.01" onchange="changevolume(this.value)" />
+    <input type="range" id="vol" min="0" max="1" value="1" step="0.01" onchange="changevolume(this.value)" style="background-color:inherit;" />
         </input>
 <!--
         <span id="display1">
@@ -297,13 +275,10 @@ REPRODUCTOR
                 </svg>
             </div>
         </button>
-
-
  <button type="button" data-modal-target="modal" data-modal-toggle="modal">
   <svg class="px-1" width="35" height="35" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 20C14.1667 20 13.4583 19.7083 12.875 19.125C12.2917 18.5417 12 17.8333 12 17C12 16.8833 12.0083 16.7623 12.025 16.637C12.0417 16.5123 12.0667 16.4 12.1 16.3L5.05 12.2C4.76667 12.45 4.45 12.6457 4.1 12.787C3.75 12.929 3.38333 13 3 13C2.16667 13 1.45833 12.7083 0.875 12.125C0.291667 11.5417 0 10.8333 0 10C0 9.16667 0.291667 8.45833 0.875 7.875C1.45833 7.29167 2.16667 7 3 7C3.38333 7 3.75 7.07067 4.1 7.212C4.45 7.354 4.76667 7.55 5.05 7.8L12.1 3.7C12.0667 3.6 12.0417 3.48767 12.025 3.363C12.0083 3.23767 12 3.11667 12 3C12 2.16667 12.2917 1.45833 12.875 0.875C13.4583 0.291667 14.1667 0 15 0C15.8333 0 16.5417 0.291667 17.125 0.875C17.7083 1.45833 18 2.16667 18 3C18 3.83333 17.7083 4.54167 17.125 5.125C16.5417 5.70833 15.8333 6 15 6C14.6167 6 14.25 5.929 13.9 5.787C13.55 5.64567 13.2333 5.45 12.95 5.2L5.9 9.3C5.93333 9.4 5.95833 9.51233 5.975 9.637C5.99167 9.76233 6 9.88333 6 10C6 10.1167 5.99167 10.2373 5.975 10.362C5.95833 10.4873 5.93333 10.6 5.9 10.7L12.95 14.8C13.2333 14.55 13.55 14.354 13.9 14.212C14.25 14.0707 14.6167 14 15 14C15.8333 14 16.5417 14.2917 17.125 14.875C17.7083 15.4583 18 16.1667 18 17C18 17.8333 17.7083 18.5417 17.125 19.125C16.5417 19.7083 15.8333 20 15 20Z" fill="#282828"/>
 </svg>
-  
 </button>
 
     </div>
@@ -317,15 +292,26 @@ REPRODUCTOR
                         48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z" />
     </symbol>
 </svg>
-
 <!-- FINSECCION RADIO -->
-
-
 <audio id="player" controls="controls" class="hidden inline-flex" src="https://01.solumedia.com.ar:8366/stream"></audio>
-
-
-
 <style>
+.noticia-der{
+border-top-left-radius: 0.5rem;
+
+}
+@media screen and (max-width:766px){
+
+
+.noticia-der{
+border-top-left-radius: 0.5rem;
+border-top-right-radius: 0.5rem
+}
+
+}
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0;
+}
+
 .wp-block-audio audio{
     padding-bottom:10px;
     width:100%;
@@ -482,21 +468,11 @@ REPRODUCTOR
 
             </style>
 <script>
-
-
-
-
-
-
-
   function changevolume(amount) {
   var audioobject = document.getElementById("player");
   audioobject.volume = amount;
 }
-
-
     const buttons = Array.from(document.querySelectorAll("button"));
-
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
             btn.classList.toggle("active");
@@ -506,18 +482,11 @@ REPRODUCTOR
     });
     var myAudio = document.getElementById("player");
     var isPlaying = false;
-
     function togglePlay() {
         isPlaying ? myAudio.pause() : myAudio.play();
-
-
-
     };
-
     myAudio.onplaying = function() {
         isPlaying = true;
-
-
  const play = document.getElementById('playbutton-5');
 play.style.opacity = '0';
 play.style.transform = 'translate(-50%, -50%)';
@@ -529,137 +498,98 @@ stop.style.transform = 'translate(-50%, -50%)';
     };
     myAudio.onpause = function() {
         isPlaying = false;
-
          const play = document.getElementById('playbutton-5');
 play.style.opacity = '1';
 play.style.transform = 'translate(-50%, -50%)';
-
  const stop = document.getElementById('stopbutton-5');
 stop.style.opacity = '0';
-stop.style.transform = 'translate(-50%, -50%)';
-     
-
-       
+stop.style.transform = 'translate(-50%, -50%)';   
     };
-
     function horarioslav(date) {
         var hour = date.getHours()
         var minutes = date.getMinutes();
         var horario = hour + ":" + minutes;
         var hour2 = hour*60;
         var total = hour2+minutes;
-       
         if(total >420 && total <570){
-
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-7.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-7.png";
-        
-         
             return "Nada secreto"
         }
         else if(total >570 && total <720){
         document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-    
-
             return "Sonido urbano"
         }else if(total>720 && total <750){
-
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-        return "Frecuencia Informativa <br> 1° Edición"
+        return "<p style='font-size:12px;'>Frecuencia <br> Informativa 1° Edición</p>"
         }
         else if(total>750 && total <780){
-
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-        return "Frecuencia Universitaria"
+        return "Frecuencia <br> Universitaria"
+
         }
         else if(total>780 && total <900){
-
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
        return "Sólo un café"
+
         }
          else if(total>900 && total <1080){
-
- document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-        document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
+ document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/locomotora.png";
+        document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/locomotora.png";
         return "La locomotora"
+
         }
        else if(total>1080 && total <1200){
-
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         return "Más que Noticias"
+
         }
          else if(total>1200 && total <1260){
-
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-        return "Frecuencia Informativa <br> 2da Edición"
+        return "<p style='font-size:12px;'>Frecuencia <br> Informativa 2da Edición</p>"
         }
-        else if(total >1260){
-         
+        else if(total > 1260 && total < 1440){
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-8.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-8.png";
-     
             return "Rock del país"
-
         }
         else{
-    
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-5.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-5.png";
             return "Música"
         }
     }
-
     function horariossab(date) {
-        var hour = date.getHours()
+        var hour = date.getHours();
         var minutes = date.getMinutes();
-
-      
         var hour2 = hour*60;
-
         var total = hour2+minutes;
-      
         if(total >480 && total <540){
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
-          
-          
-       
-    
             return "Rock Nacional"
         } else if(total >540 && total <600){
-
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
-     
-
             return "Sonidos de Latinoamérica" 
-    
         } else if(total >600 && total <660){
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/radio-9.png";
-         
-
-        
-     
             return "Tangos y milongas"
          }   else{
             document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-5.png";
             document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-5.png";
-
-
                 return "Música"
             }
-
     }
     var date = new Date();
     var dayOfWeek = date.getDay(); 
-    
     var openClosed = false; 
     var hour = date.getHours()
     var minutes = date.getMinutes();
@@ -695,8 +625,6 @@ stop.style.transform = 'translate(-50%, -50%)';
             }
         }
     }
-
-
  $(window).on('load', function () {
        $("#open_close").html(msg());
         $("#open_close-2").html(msg());
