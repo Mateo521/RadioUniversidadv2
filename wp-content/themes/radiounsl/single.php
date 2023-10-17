@@ -12,11 +12,6 @@ while (have_posts()) :
     $year = get_the_date('Y');
     $month = get_the_date('m');
     $day = get_the_date('d');
-
-
-
-
-
     // Obtiene el título de la entrada
     $title = sanitize_title(get_the_title());
     $entry_title = get_the_title();
@@ -65,15 +60,8 @@ if ($is_podcast) :
 ?>
     <div class="flex w-full justify-center p-8 text-white" style="background: rgb(7,55,106); background: linear-gradient(180deg, rgba(7,55,106,1) 0%, rgba(0,0,0,1) 100%);">
         <div class="max-w-screen-md w-full">
-
-
-
-
             <div class="flex w-full gap-8 justify-between" id="infos-podcasts" >
-
-
                 <div class="p-6 w-full">
-
               <!-- CATEGORÍAS  -->
               <!--
            <?php     
@@ -93,18 +81,8 @@ if ($is_podcast) :
 
     echo '</h5>';
 }?>
--->
-
-
-                            
-    
-
-
-
-                        
-                    <?php
-
-                  
+-->    
+                    <?php    
                     if ($entry_tags) : ?>
                         <?php foreach ($entry_tags as $tag) : ?>
                             <p class="rounded-lg text-white p-1  inline-flex" style="background-color: #1476B3; font-size:13px;"><a  href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>"><?php echo esc_html($tag->name); ?></a></p>
@@ -116,17 +94,12 @@ if ($is_podcast) :
                             
                    <div  class="podcasts"></div>
                 </div>
-
                 <div style="max-width:205px;" class="w-full h-full">
-                
 <? if(count($imagenes)>1):?>
                  <img class=" rounded-md" style="height:205px;" id="thumb" src="<?php echo esc_url($imagenes[0]); ?>" alt="<?php echo esc_attr(get_the_title());?>">  
 <?else: ?>
           <img class=" rounded-md" style="height:205px;" id="thumb" src="<?php echo esc_url($imagenes[0]); ?>" alt="<?php echo esc_attr(get_the_title());?>">
-      <?endif; ?>      
-         
-     
-               
+      <?endif; ?>  
                 </div>
             </div>
 
@@ -382,9 +355,6 @@ if ($counter >= 8) :
     continue;
 endif;
 ?>
-
-
-
 <div class="max-w-sm rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid " id="boxes">
     <a href="<?php the_permalink(); ?>">
         <img class="rounded-t-lg w-full" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" id="boxes-img"/>
@@ -397,8 +367,6 @@ endif;
         </div>
         <a href="<?php the_permalink(); ?>" class="flex gap-5">
    <p class="mb-3 font-bold" style="color:#E5CC26;"><?php echo esc_html($entry_title); ?></p>
-
-
         </a>
      <!-- CATEGORÍAS  -->
                     <?php
@@ -428,21 +396,14 @@ endwhile;
 //  wp_reset_postdata();
 endif;
 ?>
-
 </div>
-
 
 <div class="flex justify-center" style="padding: 50px 0;">
 <a href="<?php echo esc_url(home_url('/podcasts')); ?>">
 <div class="m-6 p-3 text-center font-bold rounded-lg inline-flex justify-center" style="background-color: #E5CC26;">Más podcasts</div>
 </a>
 </div>
-
-
 <?php endif; ?>
-
-
-
 <!-- ULTIMAS NOTICIAS -->
 <?php if (!$is_podcast) : ?>
     <h1 class="font-bold text-xl">Últimas noticias</h1>
@@ -481,9 +442,6 @@ if ($counter >= 8) :
     continue;
 endif;
 ?>
-
-
-
 <div class="max-w-sm rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid " id="boxes">
     <a href="<?php the_permalink(); ?>">
         <img class="rounded-t-lg w-full" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" id="boxes-img"/>
@@ -528,27 +486,16 @@ endwhile;
 //  wp_reset_postdata();
 endif;
 ?>
-
 </div>
-
-
 <div class="flex justify-center" style="padding: 50px 0;">
 <a href="<?php echo esc_url(home_url('/noticias')); ?>">
 <div class="m-6 p-3 text-center font-bold rounded-lg inline-flex justify-center text-white" style="background-color: #07376A">Más noticias</div>
 </a>
 </div>
-
-
 <?php endif; ?>
-
-
     </div>
 </div>
-
-
-
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
   var subtituloElement = document.getElementById('subtitulo');
   var subtextoElement = document.getElementById('subtexto');
@@ -569,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function() {
     otraUbicacionContainer_3.appendChild(podcastClone);
   }
 });
-
 </script>
 <style>
 .wp-block-audio audio{

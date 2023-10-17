@@ -847,7 +847,7 @@ padding:0;
 
 
     <div class="flex justify-center">
-        <div class=" max-w-screen-xl p-6">
+        <div class=" max-w-screen-xl p-6" id="podcasts-6">
             <div class="flex justify-center gap-8" id="pod-card">
 
                 <?php
@@ -897,7 +897,8 @@ padding:0;
                                         <svg id="svgs-pod" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                             <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                                         </svg>
-                                        <p class="text-white hora"></p>
+                                        <p class="hora text-center p-1" style="filter: invert(1);
+mix-blend-mode: difference;"></p>
                                     </div>
                                     <img class="rounded-t-lg w-full h-full object-cover absolute" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" />
                                 </a>
@@ -1017,22 +1018,24 @@ echo $textoRecortado;
                             continue;
                         endif;
                 ?>
-<div>
+
                         <div class="max-w-sm rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid " id="boxes">
                             <a href="<?php the_permalink(); ?>">
                                 <img class="rounded-t-lg w-full" src="<?php echo esc_html($image_url); ?>" alt="<?php echo esc_attr($entry_title); ?>" id="boxes-img"/>
                             </a>
+
                             <div class="p-1" style="background-color:#F5F5F5 ;" >
-                                <div class="relative flex flex-col justify-center" style="bottom: 50px; float: right;">
+                                <div class="relative flex flex-col justify-center" style="bottom: 75px; float: right;">
                                     <svg class="svgs" height="2.5em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                         <path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                                     </svg>
+                                    <p class="text-white hora"></p>
                                 </div>
                                 <a href="<?php the_permalink(); ?>" class="flex gap-5">
-                            
      <p class="mb-3 font-bold"><?php echo esc_html($entry_title); ?></p>
-
                                 </a>
+
+
                            
                                         <?php
                                   if (!empty($categories)) {
@@ -1055,7 +1058,7 @@ echo $textoRecortado;
                                     ?>
                                    
                             </div>
-                        </div>
+                       
     <?php
                              if(preg_match($pattern,$content,$matches2)){
                                                 echo $matches2[0];
@@ -1138,9 +1141,11 @@ echo $textoRecortado;
 <script>
 function obtenerDuracionDeTodosLosAudios() {
   var tiempo = [];
-  var bloquesAudio = document.querySelectorAll('#pod-card .max-w-sm');
+  var bloquesAudio = document.querySelectorAll('#podcasts-6 .max-w-sm');
   let elementsArray = Array.from(bloquesAudio);
+
   var hora1 = document.getElementsByClassName("hora");
+
   function cargarMetadato(audio) {
     return new Promise(function(resolve) {
       audio.onloadedmetadata = function() {
@@ -1149,7 +1154,11 @@ function obtenerDuracionDeTodosLosAudios() {
     });
   }
   var promesas = elementsArray.map(function(bloquesAudio) {
+
     var reproductorAudio = bloquesAudio.querySelector('audio');
+
+
+
     if (reproductorAudio) {
       return cargarMetadato(reproductorAudio);
     } else {
@@ -1157,7 +1166,10 @@ function obtenerDuracionDeTodosLosAudios() {
     }
   });
   Promise.all(promesas).then(function(duraciones) {
+
+
     for (var j = 0; j < duraciones.length; j++) {
+        console.log(duraciones[j]);
       if (duraciones[j] != 0) {
         hora1[j].innerHTML = Math.floor(duraciones[j] / 60) + ' m';
       }

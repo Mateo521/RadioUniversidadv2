@@ -59,14 +59,20 @@
 
 
                         </div>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                       
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 ">
+ <!--<button type="submit">-->
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
+
+  <!--</button>-->
                             <span class="sr-only">Search icon</span>
                         </div>
+                      
                         <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                            <input type="search" id="search-navbar" name="s" class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="¿Qué estás buscando?" />
+                            <input type="search" id="search-navbar" name="s" class="block w-full pr-5  text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="¿Qué estás buscando?" style="padding-right: 35px;
+    margin-right: 6px;" />
 
                         </form>
                     </div>
@@ -245,8 +251,6 @@ function logostr(){
 
                     ?>
                     <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm ">
-
-
                         <li>
                             <a href="<?php echo esc_url(home_url('/')); ?>" class="text-white">Inicio</a>
                         </li>

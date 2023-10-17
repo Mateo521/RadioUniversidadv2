@@ -10,24 +10,7 @@ wp_footer();
 #seccion-radio{
 bottom:-116px;
 }</style>
-<script>
-  let activado2 = false;
-function displayfooter(){
 
-  if(activado2){
-      
-         $("#radio").css({bottom:"0"});
-      $("#seccion-radio").css({bottom:"0"});
-     
-  }
-  else{
-       $("#radio").css({bottom:"-135px"});
-      $("#seccion-radio").css({bottom:"-116px"});
-     
-  }
-  activado2 = !activado2;
-}
-</script>
 <div class="footer">
 <footer id="footer">
 
@@ -249,7 +232,7 @@ REPRODUCTOR
             <div class="m-4">
                 <div class="p-1 text-sm rounded-lg text-white flex items-center gap-1 inline-flex" style="background-color:  #07376A;"><img src="https://i.giphy.com/media/R9vSQdiH6I5Bqi9xzx/giphy.webp" alt="" style="width:7px;"> En
                     vivo</div>
-                <p class="font-bold" id="open_close"></p>
+                <p class="font-bold py-4" id="open_close"></p>
             </div>
         </div>
     </div>
@@ -534,7 +517,7 @@ stop.style.transform = 'translate(-50%, -50%)';
         else if(total>780 && total <900){
  document.getElementById("radio-imagen").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
         document.getElementById("radio-imagen2").src="http://radiounsl.byethost18.com/wp-content/themes/radiounsl/assets/images/icon-6.png";
-       return "Sólo un café"
+       return "<p style='font-size:12px;'>Frecuencia <br> Informativa 2da Edición</p>"
 
         }
          else if(total>900 && total <1080){
@@ -629,6 +612,32 @@ stop.style.transform = 'translate(-50%, -50%)';
        $("#open_close").html(msg());
         $("#open_close-2").html(msg());
  });
+
+
+  let activado2 = false;
+function displayfooter(){
+
+  if(activado2){  
+    $("#radio").css({bottom:"0"});
+    $("#seccion-radio").css({bottom:"0"});
+  }
+  else{
+
+      var con = document.getElementById('open_close').innerHTML;
+
+if(con=="Frecuencia <br> Universitaria"){
+    $("#seccion-radio").css({bottom:"-140px"});
+}else if (con=='<p style="font-size:12px;">Frecuencia <br> Informativa 2da Edición</p>'){
+    console.log("a");
+     $("#seccion-radio").css({bottom:"-128px"});
+}
+else{
+    $("#radio").css({bottom:"-135px"});
+    $("#seccion-radio").css({bottom:"-116px"});
+}
+  }
+  activado2 = !activado2;
+}
 </script>
 </body>
 
